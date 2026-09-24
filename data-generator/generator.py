@@ -2,6 +2,12 @@ import json
 import random
 import time
 from datetime import datetime
+from kafka import KafkaProducer
+
+producer = KafkaProducer(
+    bootstrap_servers="localhost:9092",
+    value_serializer=lambda value: json.dumps(value).encode("utf-8")
+)
 
 while True:
     transaction = {
@@ -12,5 +18,9 @@ while True:
         "status": random.choice(["success", "failed"])
     }
 
-    print(json.dumps(transaction))
+    producer.send("checkout-telemetry", transaction)
+    producer.flush()
+
+    print("Sent:", transaction)
+
     time.sleep(2)
