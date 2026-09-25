@@ -14,7 +14,7 @@ while True:
         "transaction_id": f"TX{random.randint(1000, 9999)}",
         "user_id": f"USER{random.randint(100, 999)}",
         "amount": round(random.uniform(10, 1000), 2),
-        "timestamp": datetime.now().isoformat(),
+        "": datetime.now().isoformat(),
         "status": random.choice(["success", "failed"])
     }
 
