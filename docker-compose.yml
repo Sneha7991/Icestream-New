@@ -26,6 +26,8 @@ services:
     container_name: icestream-flink
     ports:
       - "8081:8081"
+    volumes:
+      - ./flink/metrics.sql:/opt/flink/metrics.sql:ro
     command: jobmanager
     environment:
       - |
